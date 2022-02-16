@@ -12,7 +12,7 @@ let hexThree = document.getElementById("hex-three")
 let hexFour = document.getElementById("hex-four")
 let hexFive = document.getElementById("hex-five")
 let hexArr = [hexOne, hexTwo, hexThree, hexFour, hexFive]
-console.log(hexArr)
+
 
 let colorOne = document.getElementById("color-one")
 let colorTwo = document.getElementById("color-two")
@@ -21,7 +21,7 @@ let colorFour = document.getElementById("color-four")
 let colorFive = document.getElementById("color-five")
 let colorElArr = [colorOne, colorTwo, colorThree, colorFour, colorFive]
 
-let colorsArr = []
+let colorsFromApiArr = []
 
 
 
@@ -43,7 +43,7 @@ function createUrl(){
 }
 
 
-document.getElementById("selection-form").addEventListener("submit", function(e) {
+document.getElementById("btn").addEventListener("click", function(e) {
     e.preventDefault()
     let url = createUrl()
     //console.log(url)
@@ -52,18 +52,13 @@ document.getElementById("selection-form").addEventListener("submit", function(e)
     .then(data => {
         for(let i=0; i<data.colors.length;i++){
             
-            colorsArr.push(data.colors[i].hex.value)
+            colorsFromApiArr.push(data.colors[i].hex.value)
         }
         for(let i=0; i<hexArr.length; i++){
-            hexArr[i].textContent = colorsArr[i]
-            colorElArr[i].style.background = colorsArr[i] 
+            hexArr[i].textContent = colorsFromApiArr[i]
+            colorElArr[i].style.background = colorsFromApiArr[i] 
         }
-        
-
-    })
-   
-    
-    
+    }) 
 })
 
 // let url = `https://www.thecolorapi.com/id?hex=${chosenColor}&mode=${chosenScheme}&count=5`
