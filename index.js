@@ -29,7 +29,7 @@ let colorsFromApiArr = []
 
 
 function createUrl(){
-    url = new URL("https://www.thecolorapi.com/scheme?format=json")
+    let url = new URL("https://www.thecolorapi.com/scheme?format=json")
     let params = new URLSearchParams(url.search)
     chosenColor = colorEl.value
     chosenScheme = schemeEl.value
