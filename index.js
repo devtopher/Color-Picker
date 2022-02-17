@@ -18,14 +18,25 @@ let colorsFromApiArr = []
 let clickableElements = hexElementArray.concat(colorElementArray)
 
 function copyToClipboard(){}
+//regex taken from https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
+const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
-
+//click to copy for the paragraphs under the columns
 for (let i = 0; i<hexElementArray.length; i++){
-    hexElementArray[i].addEventListener("click",()=> console.log(hexElementArray[i].textContent) )
+    hexElementArray[i].addEventListener("click",()=> {
+    navigator.clipboard.writeText(hexElementArray[i].textContent)
+    .then(()=> alert("Copied to clipboard"))
+} )
 }
+//click to copy for the colored columns
 for (let i = 0; i<colorElementArray.length; i++){
-    console.log(colorElementArray[i].style.backgroundColor)
+    colorElementArray[i].addEventListener("click",()=>{
+    let valueToBeCopied = rgba2hex(colorElementArray[i].style.background)
+    navigator.clipboard.writeText(valueToBeCopied)
+    .then(()=> alert("Copied to clipboard"))
+})
 }
+
 
 document.getElementById("btn").addEventListener("click", function(e) {
     e.preventDefault()
