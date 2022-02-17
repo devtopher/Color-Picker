@@ -1,20 +1,31 @@
-let schemeEl= document.getElementById("color-scheme")
-let colorEl = document.getElementById("color-picker")
+const schemeEl= document.getElementById("color-scheme")
+const colorEl = document.getElementById("color-picker")
 let chosenScheme = schemeEl.value
 let chosenColor = colorEl.value
-let hexOne = document.getElementById("hex-one")
-let hexTwo = document.getElementById("hex-two")
-let hexThree = document.getElementById("hex-three")
-let hexFour = document.getElementById("hex-four")
-let hexFive = document.getElementById("hex-five")
-let hexArr = [hexOne, hexTwo, hexThree, hexFour, hexFive]
-let colorOne = document.getElementById("color-one")
-let colorTwo = document.getElementById("color-two")
-let colorThree = document.getElementById("color-three")
-let colorFour = document.getElementById("color-four")
-let colorFive = document.getElementById("color-five")
-let colorElementArray = [colorOne, colorTwo, colorThree, colorFour, colorFive]
+const hexOne = document.getElementById("hex-one")
+const hexTwo = document.getElementById("hex-two")
+const hexThree = document.getElementById("hex-three")
+const hexFour = document.getElementById("hex-four")
+const hexFive = document.getElementById("hex-five")
+const hexElementArray = [hexOne, hexTwo, hexThree, hexFour, hexFive]
+const colorOne = document.getElementById("color-one")
+const colorTwo = document.getElementById("color-two")
+const colorThree = document.getElementById("color-three")
+const colorFour = document.getElementById("color-four")
+const colorFive = document.getElementById("color-five")
+const colorElementArray = [colorOne, colorTwo, colorThree, colorFour, colorFive]
 let colorsFromApiArr = []
+let clickableElements = hexElementArray.concat(colorElementArray)
+
+function copyToClipboard(){}
+
+
+for (let i = 0; i<hexElementArray.length; i++){
+    hexElementArray[i].addEventListener("click",()=> console.log(hexElementArray[i].textContent) )
+}
+for (let i = 0; i<colorElementArray.length; i++){
+    console.log(colorElementArray[i].style.backgroundColor)
+}
 
 document.getElementById("btn").addEventListener("click", function(e) {
     e.preventDefault()
@@ -27,9 +38,10 @@ document.getElementById("btn").addEventListener("click", function(e) {
          for(let i=0; i<data.colors.length;i++){
              colorsFromApiArr.push(data.colors[i].hex.value)
          }
-         for(let i=0; i<hexArr.length; i++){
-             hexArr[i].textContent = colorsFromApiArr[i]
+         for(let i=0; i<hexElementArray.length; i++){
+             hexElementArray[i].textContent = colorsFromApiArr[i]
              colorElementArray[i].style.background = colorsFromApiArr[i] 
          }
     }) 
 })
+
