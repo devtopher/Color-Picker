@@ -36,7 +36,7 @@ function showModal(){
 for (let i = 0; i<hexElementArray.length; i++){
     hexElementArray[i].addEventListener("click",()=> {
     navigator.clipboard.writeText(hexElementArray[i].textContent)
-    .then(showModal())
+    showModal()
    
     
 } )
