@@ -17,9 +17,15 @@ const colorElementArray = [colorOne, colorTwo, colorThree, colorFour, colorFive]
 let colorsFromApiArr = []
 let clickableElements = hexElementArray.concat(colorElementArray)
 let toastContainer = document.getElementById("toast-container")
-let copied = false
 
+//Setting initial column colors here so that click to copy works from the start, 
+//since element.style doesn't reference the stylesheet.
 
+colorOne.style.background = '#02302D'
+colorTwo.style.background = "#04615A"
+colorThree.style.background = "#059388"
+colorFour.style.background = "#06C5B7"
+colorFive.style.background = "#06F8E6"
 
 
 //regex taken from https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
@@ -30,17 +36,16 @@ function showModal(){
     console.log("modal shown")
     toastContainer.classList.add("revealed")
     setTimeout(()=>toastContainer.classList.remove("revealed"), 2000)
-
 }
+
 //click to copy for the paragraphs under the columns
 for (let i = 0; i<hexElementArray.length; i++){
     hexElementArray[i].addEventListener("click",()=> {
     navigator.clipboard.writeText(hexElementArray[i].textContent)
     showModal()
-   
-    
 } )
 }
+
 //click to copy for the colored columns
 for (let i = 0; i<colorElementArray.length; i++){
     colorElementArray[i].addEventListener("click",()=>{

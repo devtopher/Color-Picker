@@ -8,10 +8,15 @@
         
     </head>
     <body>
+        <div class="header">
+            <p>An open-source click-to-copy color scheme generator powered by
+                 <a href="https://www.thecolorapi.com">The Color API</a> and built by 
+                <a href="https://www.github.com/devtopher">Chris McCoy.</a></p>
+        </div>
         
         <div class="container">
             <form id="selection-form" class="menu">
-                <input id="color-picker" type="color">
+                <input id="color-picker" type="color" value="#04aea1">
                 <select name="color-scheme" id="color-scheme">
                     <option value="monochrome">Monochrome</option>
                     <option value="monochrome-light">Monochrome-light</option>
@@ -41,11 +46,11 @@
                 </div>
             </div> 
             <div class="footer">
-                <p id="hex-one"class="hex-one"></p>
-                <p id ="hex-two" class="hex-two"></p>
-                <p id ="hex-three" class="hex-three"></p>
-                <p id ="hex-four" class="hex-four"></p>
-                <p id ="hex-five" class="hex-five"></p>
+                <p id="hex-one"class="hex-one hex-code">#02302D</p>
+                <p id ="hex-two" class="hex-two hex-code">#04615A</p>
+                <p id ="hex-three" class="hex-three hex-code">#059388</p>
+                <p id ="hex-four" class="hex-four hex-code">#06C5B7</p>
+                <p id ="hex-five" class="hex-five hex-code">#06F8E6</p>
                 <div id="toast-container" class="toast-container">Copied to clipboard!</div>
             </div>
             
