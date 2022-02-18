@@ -16,16 +16,29 @@ const colorFive = document.getElementById("color-five")
 const colorElementArray = [colorOne, colorTwo, colorThree, colorFour, colorFive]
 let colorsFromApiArr = []
 let clickableElements = hexElementArray.concat(colorElementArray)
+let toastContainer = document.getElementById("toast-container")
+let copied = false
 
-function copyToClipboard(){}
+
+
+
 //regex taken from https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
 const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
+//shows "copied to clipboard" modal for 2 seconds
+function showModal(){
+    console.log("modal shown")
+    toastContainer.classList.add("revealed")
+    setTimeout(()=>toastContainer.classList.remove("revealed"), 2000)
+
+}
 //click to copy for the paragraphs under the columns
 for (let i = 0; i<hexElementArray.length; i++){
     hexElementArray[i].addEventListener("click",()=> {
     navigator.clipboard.writeText(hexElementArray[i].textContent)
-    .then(()=> alert("Copied to clipboard"))
+    .then(showModal())
+   
+    
 } )
 }
 //click to copy for the colored columns
@@ -33,11 +46,11 @@ for (let i = 0; i<colorElementArray.length; i++){
     colorElementArray[i].addEventListener("click",()=>{
     let valueToBeCopied = rgba2hex(colorElementArray[i].style.background)
     navigator.clipboard.writeText(valueToBeCopied)
-    .then(()=> alert("Copied to clipboard"))
+    showModal()
 })
 }
 
-
+//get data from the api on button click and update DOM
 document.getElementById("btn").addEventListener("click", function(e) {
     e.preventDefault()
     chosenColor = colorEl.value.substring(1)
